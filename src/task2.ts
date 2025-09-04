@@ -44,7 +44,7 @@ function userInput(): void {
 function placeOrder(): void {
 	rl.question('What do you wish to order? ', (order) => {
 		orders.push(order)
-		saveToOrdersJSON(orders, 'orders.json')
+		saveToOrdersJSON(orders)
 		console.log(`The order for ${order} has been placed.`)
 
 		setImmediate(userInput)
@@ -75,13 +75,13 @@ function deleteOrder(): void {
 		}
 
 		console.log(`${deletedOrder} has been removed.`)
-		saveToOrdersJSON(orders, 'orders.json')
+		saveToOrdersJSON(orders)
 		setImmediate(userInput)
 	})
 }
 
-function saveToOrdersJSON(arrayToSave: string[], fileName: string): void {
-	fs.writeFileSync(fileName, JSON.stringify(arrayToSave))
+function saveToOrdersJSON(arrayToSave: string[]): void {
+	fs.writeFileSync('orders.json', JSON.stringify(arrayToSave))
 }
 
 userInput()
